@@ -176,6 +176,7 @@ require get_template_directory() . '/inc/template-functions.php';
  */
 require get_template_directory() . '/inc/customizer.php';
 
+require get_template_directory() . '/inc/custom-taxonomy.php';
 /**
  * Load Jetpack compatibility file.
  */
@@ -183,3 +184,48 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+add_filter('query_vars', 'parameter_queryvars' );
+function parameter_queryvars( $qvars ){
+	$qvars[] = 'pid';
+	return $qvars;
+}
+
+function remove_wordpress_version() {
+return '';
+}
+add_filter('the_generator', 'remove_wordpress_version');
+
+// Our custom post type function
+function create_posttype_video() {
+ 
+    register_post_type( 'video',
+    // CPT Options
+        array(
+            'labels' => array(
+                'name' => __( 'Video' ),
+                'singular_name' => __( 'Video' )
+            ),
+            'hierarchical' => true,
+            'public' => true,
+            'menu_icon' => 'dashicons-video-alt2',
+            'publicly_queryable' => true,
+            'has_archive' => true,
+            'rewrite' => array('slug' => 'video'),
+            'show_in_rest' => true,
+            'supports'      => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' ),
+ 			'taxonomies' => array('post_tag','category'),
+        )
+    );
+}
+// Hooking up our function to theme setup
+add_action( 'init', 'create_posttype_video' );
+
+flush_rewrite_rules( false );
+
+add_filter( 'pre_get_posts', 'my_get_posts' );
+
+function my_get_posts( $query ) {
+	if ( $query->is_home() && $query->is_main_query() )
+		$query->set( 'post_type', array( 'post', 'video') );
+	return $query;
+}

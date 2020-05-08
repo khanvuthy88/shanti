@@ -132,7 +132,6 @@ if ( ! function_exists( 'shanti_volunteer_association_cambodia_post_thumbnail' )
 			</div><!-- .post-thumbnail -->
 
 		<?php else : ?>
-
 			<a class="post-thumbnail" href="<?php the_permalink(); ?>" aria-hidden="true" tabindex="-1">
 				<?php
 					the_post_thumbnail(
@@ -146,6 +145,57 @@ if ( ! function_exists( 'shanti_volunteer_association_cambodia_post_thumbnail' )
 						)
 					);
 				?>
+				<div class="like_and_read_number">
+					<div class="like_read">
+						<div class="like"><i class="fa fa-heart" aria-hidden="true"></i> 333</div>
+						<div class="read"><i class="fa fa-book" aria-hidden="true"></i> 333</div>
+					</div>
+					<div class="level">
+						<p>level 34</p>
+					</div>
+				</div>
+			</a>
+
+			<?php
+		endif; // End is_singular().
+	}
+endif;
+if ( ! function_exists( 'shanti_volunteer_association_cambodia_video_thumbnail' ) ) :
+	/**
+	 * Displays an optional post thumbnail.
+	 *
+	 * Wraps the post thumbnail in an anchor element on index views, or a div
+	 * element when on single views.
+	 */
+	function shanti_volunteer_association_cambodia_video_thumbnail() {
+		if ( post_password_required() || is_attachment() || ! has_post_thumbnail() ) {
+			return;
+		}
+
+		if ( is_singular() ) :
+			?>
+
+			<div class="post-thumbnail">
+				<?php the_post_thumbnail(); ?>
+			</div><!-- .post-thumbnail -->
+
+		<?php else : ?>
+			<a class="post-thumbnail" href="<?php the_permalink(); ?>" aria-hidden="true" tabindex="-1">
+				<?php
+					the_post_thumbnail(
+						'post-thumbnail',
+						array(
+							'alt' => the_title_attribute(
+								array(
+									'echo' => false,
+								)
+							),
+						)
+					);
+				?>
+				<div class="video_small_button">
+					<i class="fa fa-play"></i>
+				</div>
 			</a>
 
 			<?php
@@ -163,3 +213,39 @@ if ( ! function_exists( 'wp_body_open' ) ) :
 		do_action( 'wp_body_open' );
 	}
 endif;
+
+
+function book_author_taxonomies_terms_links() {
+    // Get post by post ID.
+    if ( ! $post = get_post() ) {
+        return '';
+    }
+ 
+    // Get post type by post.
+    $post_type = $post->post_type;
+ 
+    // Get post type taxonomies.
+    $taxonomies = get_object_taxonomies( $post_type, 'objects' );
+ 
+    $out = array();
+ 
+    foreach ( $taxonomies as $taxonomy_slug => $taxonomy ){
+ 
+        // Get the terms related to post.
+        $terms = get_the_terms( $post->ID, $taxonomy_slug );
+ 
+        if ( ! empty( $terms ) ) {
+        	$out[] = '<div class="'.$taxonomy_slug.'">';
+            $out[] = "<h2>" . $taxonomy->label . " : </h2>\n<ul>";
+            foreach ( $terms as $term ) {
+                $out[] = sprintf( '<li><a href="%1$s">%2$s</a></li>',
+                    esc_url( get_term_link( $term->slug, $taxonomy_slug ) ),
+                    esc_html( $term->name )
+                );
+            }
+            $out[] = "\n</ul></div>\n";
+        }
+    }
+    return implode( '', $out );
+}
+?>

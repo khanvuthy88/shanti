@@ -1,43 +1,18 @@
 {
-  "name": "Shanti Volunteer Association Cambodia",
+  "name": "shanti-volunteer-association-cambodia",
   "version": "1.0.0",
   "description": "Shanti Volunteer Association Cambodia",
-  "author": "Khan Vuthy",
-  "license": "GPL-2.0-or-later",
-  "keywords": [
-    "WordPress",
-    "Theme"
-  ],
-  "homepage": "#",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/khanvuthy88/shanti.git"
-  },
-
-  "devDependencies": {
-    "@wordpress/scripts": "^8.0.1",
+  "main": "webpack.mix.js",
+  "dependencies": {
     "cross-env": "^7.0.2",
+    "jquery": "^3.5.0",
     "laravel-mix": "^5.0.4",
-    "node-sass": "^4.13.1",
     "resolve-url-loader": "^3.1.0",
-    "rtlcss": "^2.5.0",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
     "vue-template-compiler": "^2.6.11"
   },
-  "rtlcssConfig": {
-    "options": {
-      "autoRename": false,
-      "autoRenameStrict": false,
-      "blacklist": {},
-      "clean": true,
-      "greedy": false,
-      "processUrls": false,
-      "stringMap": []
-    },
-    "plugins": [],
-    "map": false
-  },
+  "devDependencies": {},
   "scripts": {
     "dev": "npm run development",
     "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
@@ -46,5 +21,14 @@
     "prod": "npm run production",
     "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
-  "main": "index.js"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/khanvuthy88/shanti.git"
+  },
+  "author": "khan vuthy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/khanvuthy88/shanti/issues"
+  },
+  "homepage": "https://github.com/khanvuthy88/shanti#readme"
 }
