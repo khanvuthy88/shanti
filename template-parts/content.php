@@ -144,10 +144,47 @@
 						<div class="relatedcontent">
 							<h2>
 								<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title(); ?>">
-									<?php the_title(); ?>
-										
+									<?php the_title(); ?>										
 								</a>
 							</h2>
+							<?php 
+								if(is_single() && 'post' == get_post_type()){ ?>
+
+									<?php 
+									$terms = get_the_terms( $post, 'book_author' );
+									$terms_illustrator = get_the_terms( $post, 'illustrator' );
+					 
+							        if ( ! empty( $terms ) ) {
+							        	?>
+							        	<div class="book_author">
+							        		<h2>Author:</h2>
+							        		<ul>
+							        			<?php foreach ($terms as $term) { ?>
+							        				<li>
+							        					<a href="<?php echo esc_url(get_term_link($term->slug, 'book_author')) ?>">
+							        						<?php echo esc_html($term->name) ?>
+									        			</a>
+									        		</li>
+							        			<?php } ?>
+							        		</ul>
+							        	</div>		        	
+							        <?php } ?>
+							        <?php if (! empty($terms_illustrator)) { ?>
+							        	<div class="illustrator">
+							        		<h2>Illustrator:</h2>
+							        		<ul>
+							        			<?php foreach ($terms_illustrator as $term) { ?>
+							        				<li>
+							        					<a href="<?php echo esc_url(get_term_link($term->slug, 'illustrator')) ?>">
+							        						<?php echo esc_html($term->name) ?>
+									        			</a>
+									        		</li>
+							        			<?php } ?>
+							        		</ul>
+							        	</div>
+							        <?php } ?>
+
+								<?php }?>
 						</div>
 					</li>
 				<?php  }
