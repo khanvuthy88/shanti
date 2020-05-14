@@ -245,6 +245,7 @@ function insert_fb_in_head() {
         $des_post = strip_shortcodes( $des_post );
         $des_post = str_replace( array("\n", "\r", "\t"), ' ', $des_post );
         $des_post = mb_substr( $des_post, 0, 300, 'utf8' );
+        echo '<meta name="description" content="' . $des_post . '" />';
         echo '<meta property="og:title" content="' . get_the_title() . '"/>';
         echo '<meta property="og:type" content="article"/>';
         echo '<meta property="og:url" content="' . get_permalink() . '"/>';
