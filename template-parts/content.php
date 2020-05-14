@@ -135,9 +135,19 @@
 										<div class="like"><i class="fa fa-heart" aria-hidden="true"></i> 333</div>
 										<div class="read"><i class="fa fa-book" aria-hidden="true"></i> 333</div>
 									</div>
-									<div class="level">
-										<p>level 34</p>
-									</div>
+									<?php $terms = get_the_terms( $post, 'book_level' );
+									if ( ! empty( $terms ) ) {
+							        	?>
+							        	<div class="book_level">
+							        		<ul>
+							        			<?php foreach ($terms as $term) { ?>
+							        				<li><?php echo esc_html($term->name) ?></li>
+							        			<?php } ?>
+							        		</ul>
+							        	</div>		        	
+							        <?php }else{?>
+							        	<div class="book_level">N/A</div>
+							        <?php } ?>
 								</div>
 							</a>
 						</div>

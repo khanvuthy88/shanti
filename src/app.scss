@@ -559,6 +559,16 @@ main{
 						}
 						a{
 							position: relative;
+							.like_and_read_number{
+								.book_level{
+									ul{
+										li{
+											width: 100%;
+											margin-bottom: 0px;
+										}
+									}
+								}
+							}
 						}
 					}
 					.relatedcontent{
@@ -601,6 +611,7 @@ main{
 								}
 							}
 						}
+
 					}
 				}
 			}
@@ -624,13 +635,15 @@ main{
 	}
 
     .like_read,
-    .level{
+    .level,
+    .book_level{
     	width: 50%;
     	p{
     		margin: 0px;
     	}
     }
-    .level{
+    .level,
+    .book_level{
     	text-align: right;
     	@include respond-to(xs){
     		padding-right: 15px;
