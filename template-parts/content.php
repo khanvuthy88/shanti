@@ -27,7 +27,8 @@
 				<div class="post_summary">
 					<?php echo book_author_taxonomies_terms_links() ?>
 					<div class="button_actions">
-						<button data-url="<?php echo bloginfo('url').'/book-pdf-view?pid='.get_the_ID(); ?>" id="read_book_story">
+						<!-- <button data-url="<?php echo bloginfo('url').'/book-pdf-view?pid='.get_the_ID(); ?>" id="read_book_story"> -->
+						<button id="read_book_story" data-url="<?php echo get_field('_acf_pdf_file', get_the_ID()); ?>">
 							<img src="<?php echo get_template_directory_uri().'/assets/images/booking.svg'; ?>"/>Read Story</button>
 						<button id="save_off_line">Save Off line</button>
 					</div>
@@ -98,6 +99,14 @@
 			)
 		);
 		?>
+
+
+
+		
+		<!-- Trigger/Open The Modal -->
+
+
+
 	</div><!-- .entry-content -->
 <?php endif; ?>
 
@@ -203,4 +212,5 @@
 		}
 		$post = $orig_post;
 		wp_reset_query(); 
-}
+
+	?><?php }

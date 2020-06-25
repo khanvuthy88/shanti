@@ -735,3 +735,138 @@ footer{
 	    position: relative;
     }
 }
+
+
+/* The Modal (background) */
+.modal {
+  position: fixed !important;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    height: auto !important;
+    left: 0;
+    background-color: white;
+    z-index: 99999;
+}
+
+/* Modal Content */
+.modal-content {
+    position: absolute !important;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    height: auto !important;
+    overflow: hidden;
+    background-color: rgb(41, 148, 209);
+    min-height: 300px;
+    min-width: 300px;
+  
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+	-webkit-animation-name: animatetop;
+	-webkit-animation-duration: 0.4s;
+	animation-name: animatetop;
+	animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+/*#magazine{
+	width: 800px;
+	height: 400px;
+}
+#magazine .turn-page{
+	background-color:#ccc;
+}*/
+
+body{
+	&#view_book{
+		overflow-x: hidden;
+		#book_block{
+			display: block;
+			opacity:1;
+			-webkit-transition:opacity 1s;
+			-moz-transition:opacity 1s;
+			-o-transition:opacity 1s;
+			-ms-transition:opacity 1s;
+			transition:opacity 1s;
+			z-index: 1;
+			.book_block_bar{
+				position: absolute;
+				top: 10%;
+				right: 10%;
+			}
+		}
+	}
+
+}
+#book_block{
+	display: none;
+	opacity:0;
+	-webkit-transition:opacity 0.1s;
+	-moz-transition:opacity 0.1s;
+	-o-transition:opacity 0.1s;
+	-ms-transition:opacity 0.1s;
+	transition:opacity 0.1s;
+	z-index: 0;
+	.book_block_bar{
+		a{
+			&.quit{
+				background-position: -44px 0;
+			    cursor: default;
+			    position: absolute;
+			    right: 0;
+			    top: 45px;
+			}
+			&.icon{
+				width: 22px;
+			    height: 22px;
+			    background-image: url('../assets/vendors/turnjs/pics/new-sprites.png');
+			    display: inline-block;
+			}
+		}
+	}
+}
+
+#book_block .book_block_bar a.icon {
+    width: 22px;
+    height: 22px;
+    background-image: url('http://shanti-volunteer.local/wp-content/themes/shanti-volunteer-association-cambodia/images/new-sprites.png');
+
+}
