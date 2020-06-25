@@ -406,7 +406,7 @@ main{
 			@include respond-to(md){
 				width: 100% !important;
 				display: grid;
-				grid-template-columns: 32% 68%;	
+				grid-template-columns: 68% 32%;	
 			}
 			&.video{
 				@include respond-to(md){
@@ -832,6 +832,11 @@ body{
 				top: 10%;
 				right: 10%;
 			}
+		}
+		.site-header,
+		.site-main,
+		.site-footer{
+			opacity: 0;
 		}
 	}
 

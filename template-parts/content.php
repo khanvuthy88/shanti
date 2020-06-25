@@ -9,8 +9,7 @@
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<?php shanti_volunteer_association_cambodia_post_thumbnail(); ?>
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>	
 	<div class="content_block">
 		<header class="entry-header">
 			<?php
@@ -72,6 +71,7 @@
 			</div><!-- .entry-content -->
 		<?php endif ?>
 	</div>
+	<?php shanti_volunteer_association_cambodia_post_thumbnail(); ?>
 </article><!-- #post-<?php the_ID(); ?> -->
 
 <?php if(is_singular()): ?>
