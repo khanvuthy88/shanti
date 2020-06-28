@@ -50,3 +50,7 @@
 
 		</div><!-- .site-branding -->
 	</header><!-- #masthead -->
+
+	<div class="top_banner">
+		<img src="<?php echo get_template_directory_uri().'/assets/images/8858786900067.jpg'; ?>" alt="Banner"/>
+	</div>

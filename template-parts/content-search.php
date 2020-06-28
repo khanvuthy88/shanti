@@ -10,26 +10,49 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
-		<?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
-
-		<?php if ( 'post' === get_post_type() ) : ?>
-		<div class="entry-meta">
-			<?php
-			shanti_volunteer_association_cambodia_posted_on();
-			shanti_volunteer_association_cambodia_posted_by();
-			?>
-		</div><!-- .entry-meta -->
-		<?php endif; ?>
-	</header><!-- .entry-header -->
-
 	<?php shanti_volunteer_association_cambodia_post_thumbnail(); ?>
+	<div class="content_block">
+		<header class="entry-header">
+			<?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
+		</header>
+		<?php if ( 'post' === get_post_type() ) : ?>			
+			<div class="entry-content">
+				<?php 
+				$terms = get_the_terms( $post, 'book_author' );
+				$terms_illustrator = get_the_terms( $post, 'illustrator' );
 
-	<div class="entry-summary">
-		<?php the_excerpt(); ?>
-	</div><!-- .entry-summary -->
-
-	<footer class="entry-footer">
-		<?php shanti_volunteer_association_cambodia_entry_footer(); ?>
-	</footer><!-- .entry-footer -->
+		        if ( ! empty( $terms ) ) {
+		        	?>
+		        	<div class="book_author">
+		        		<h2>អ្នកនិពន្ធ</h2>
+		        		<div>:</div>
+		        		<ul>
+		        			<?php foreach ($terms as $term) { ?>
+		        				<li>
+		        					<a href="<?php echo esc_url(get_term_link($term->slug, 'book_author')) ?>">
+		        						<?php echo esc_html($term->name) ?>
+				        			</a>
+				        		</li>
+		        			<?php } ?>
+		        		</ul>
+		        	</div>		        	
+		        <?php } ?>
+		        <?php if (! empty($terms_illustrator)) { ?>
+		        	<div class="illustrator">
+		        		<h2>អ្នកគូររូប</h2>
+		        		<div>:</div>
+		        		<ul>
+		        			<?php foreach ($terms_illustrator as $term) { ?>
+		        				<li>
+		        					<a href="<?php echo esc_url(get_term_link($term->slug, 'illustrator')) ?>">
+		        						<?php echo esc_html($term->name) ?>
+				        			</a>
+				        		</li>
+		        			<?php } ?>
+		        		</ul>
+		        	</div>
+		        <?php } ?>
+			</div><!-- .entry-content -->
+		<?php endif; ?>
+	</div>
 </article><!-- #post-<?php the_ID(); ?> -->

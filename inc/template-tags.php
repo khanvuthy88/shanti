@@ -145,25 +145,11 @@ if ( ! function_exists( 'shanti_volunteer_association_cambodia_post_thumbnail' )
 						)
 					);
 				?>
-				<div class="like_and_read_number">
-					<div class="like_read">
-						<div class="like"><i class="fa fa-heart" aria-hidden="true"></i> 333</div>
-						<div class="read"><i class="fa fa-book" aria-hidden="true"></i> 333</div>
+				<?php if ('post' != get_post_type()): ?>
+					<div class="video_small_button">
+						<i class="fa fa-play"></i>
 					</div>
-					<?php $terms = get_the_terms( $post, 'book_level' );
-						if ( ! empty( $terms ) ) {
-				        	?>
-				        	<div class="book_level">
-				        		<ul>
-				        			<?php foreach ($terms as $term) { ?>
-				        				<li><?php echo esc_html($term->name) ?></li>
-				        			<?php } ?>
-				        		</ul>
-				        	</div>		        	
-				        <?php }else{?>
-				        	<div class="book_level">N/A</div>
-				        <?php } ?>
-				</div>
+				<?php endif ?>
 			</a>
 
 			<?php
@@ -246,7 +232,7 @@ function book_author_taxonomies_terms_links() {
  
         if ( ! empty( $terms ) ) {
         	$out[] = '<div class="'.$taxonomy_slug.'">';
-            $out[] = "<h2>" . $taxonomy->label . " : </h2>\n<ul>";
+            $out[] = "<h2>" . $taxonomy->label . "</h2><div>:</div><ul>";
             foreach ( $terms as $term ) {
                 $out[] = sprintf( '<li><a href="%1$s">%2$s</a></li>',
                     esc_url( get_term_link( $term->slug, $taxonomy_slug ) ),

@@ -20,37 +20,15 @@ get_header();
 			<div class="page-content">
 				<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'shanti-volunteer-association-cambodia' ); ?></p>
 
-					<?php
-					get_search_form();
-
-					the_widget( 'WP_Widget_Recent_Posts' );
-					?>
-
-					<div class="widget widget_categories">
-						<h2 class="widget-title"><?php esc_html_e( 'Most Used Categories', 'shanti-volunteer-association-cambodia' ); ?></h2>
-						<ul>
-							<?php
-							wp_list_categories(
-								array(
-									'orderby'    => 'count',
-									'order'      => 'DESC',
-									'show_count' => 1,
-									'title_li'   => '',
-									'number'     => 10,
-								)
-							);
-							?>
-						</ul>
-					</div><!-- .widget -->
-
-					<?php
-					/* translators: %1$s: smiley */
-					$shanti_volunteer_association_cambodia_archive_content = '<p>' . sprintf( esc_html__( 'Try looking in the monthly archives. %1$s', 'shanti-volunteer-association-cambodia' ), convert_smilies( ':)' ) ) . '</p>';
-					the_widget( 'WP_Widget_Archives', 'dropdown=1', "after_title=</h2>$shanti_volunteer_association_cambodia_archive_content" );
-
-					the_widget( 'WP_Widget_Tag_Cloud' );
-					?>
-
+				<div class="searach_box">
+					<span class="screen-reader-text">ស្វែងរក៖</span>
+					<form role="search" method="get" class="search-form" action="http://shanti-volunteer.local/">
+						<label>							
+							<input type="search" class="search-field" placeholder="ស្វែង​រក …" value="" name="s">
+						</label>
+						<input type="submit" class="search-submit" value="ស្វែង​រក">
+					</form>
+				</div>
 			</div><!-- .page-content -->
 		</section><!-- .error-404 -->
 

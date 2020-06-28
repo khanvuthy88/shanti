@@ -35,16 +35,32 @@
 			?>
 
 			<p><?php esc_html_e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'shanti-volunteer-association-cambodia' ); ?></p>
+			
+			<div class="searach_box">
+				<span class="screen-reader-text">ស្វែងរក៖</span>
+				<form role="search" method="get" class="search-form" action="http://shanti-volunteer.local/">
+					<label>							
+						<input type="search" class="search-field" placeholder="ស្វែង​រក …" value="" name="s">
+					</label>
+					<input type="submit" class="search-submit" value="ស្វែង​រក">
+				</form>
+			</div>
 			<?php
-			get_search_form();
 
 		else :
 			?>
 
 			<p><?php esc_html_e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'shanti-volunteer-association-cambodia' ); ?></p>
+			<div class="searach_box">
+				<span class="screen-reader-text">ស្វែងរក៖</span>
+				<form role="search" method="get" class="search-form" action="http://shanti-volunteer.local/">
+					<label>							
+						<input type="search" class="search-field" placeholder="ស្វែង​រក …" value="" name="s">
+					</label>
+					<input type="submit" class="search-submit" value="ស្វែង​រក">
+				</form>
+			</div>
 			<?php
-			get_search_form();
-
 		endif;
 		?>
 	</div><!-- .page-content -->

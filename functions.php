@@ -143,6 +143,7 @@ add_action( 'widgets_init', 'shanti_volunteer_association_cambodia_widgets_init'
  * Enqueue scripts and styles.
  */
 function shanti_volunteer_association_cambodia_scripts() {
+	wp_enqueue_style( 'shanti-khmer-font', get_template_directory_uri().'/assets/style.css', array(), _S_VERSION);
 	wp_enqueue_style( 'shanti-volunteer-association-cambodia-style', get_stylesheet_uri(), array(), _S_VERSION );
 	wp_style_add_data( 'shanti-volunteer-association-cambodia-style', 'rtl', 'replace' );
 

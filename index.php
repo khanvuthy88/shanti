@@ -19,6 +19,7 @@ get_header();
 	<main id="primary" class="site-main">
 		<?php get_sidebar(); ?>
 		<div class="main-content">
+			<div class="content_wrapper">
 			<?php
 			if ( have_posts() ) :
 
@@ -41,17 +42,17 @@ get_header();
 					 */
 					get_template_part( 'template-parts/content', get_post_type() );
 
-				endwhile;
-
-				echo '<div class="pagination">';
-					the_posts_navigation();
-				echo "</div>";
+				endwhile;			
 
 			else :
 
 				get_template_part( 'template-parts/content', 'none' );
 
 			endif;
+			echo '</div>';
+			echo '<div class="pagination">';
+				the_posts_navigation();
+			echo "</div>";
 			?>
 		</div>
 

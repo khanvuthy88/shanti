@@ -96,7 +96,7 @@ body{
     text-align: center;
     line-height: 1.8;
     margin: 0px auto;
-    font-family: sans-serif;
+    font-family: 'KhmerOScontent';
     transition: background-color .5s;
     @include respond-to(xs){
     	overflow-x: hidden;
@@ -194,6 +194,7 @@ header{
 	    	a{
 	    		display: block;
 	    		img{
+	    			display: block;
 	    			&.custom-logo{
 	    				@include respond-to(xs){
 		    				width: 60%;
@@ -252,11 +253,10 @@ main{
 			grid-template-columns: 25% 73%;
 		}
 		.main-content{
-			display: block;
-			width: 100%;
+			position: relative;
 			article{
 				overflow: hidden;
-				box-shadow: 0px 2px 13px 0px rgba(209, 209, 209, 0.47);
+				box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
 				@include respond-to(xs){
 					@include grid(1,3%);
 				}
@@ -280,6 +280,7 @@ main{
 							height: 168px;
 						}
 						img{
+							display: block;
 							@include respond-to(xs){
 								object-fit: cover;
 								height: 100%;
@@ -294,7 +295,7 @@ main{
 					}
 				}
 				.content_block{
-					box-shadow: 0px 2px 13px 0px rgba(209, 209, 209, 0.47);
+					// box-shadow: 0px 2px 13px 0px rgba(209, 209, 209, 0.47);
 					display: block;
 					overflow: hidden;
 					padding: 15px;
@@ -356,7 +357,7 @@ main{
 								li{
 									&:before{
 										@extend %fontawesome;
-										content: '\f061';
+										content: '\f144';
 										color: $primary;
 									}
 									list-style: none;
@@ -376,7 +377,7 @@ main{
 						&.widget-title{
 							&:before{
 								@extend %fontawesome;
-								content: '\f0da';
+								content: '\f144';
 								color: $primary;
 							}
 						}
@@ -390,6 +391,10 @@ main{
 								@extend %fontawesome;
 								content: '\f0da';
 								color: $primary;
+							}
+							a{
+								font-family: 'AngDaunPov';
+								font-size: 1rem;
 							}
 						}
 					}
@@ -421,6 +426,7 @@ main{
 				}
 			}
 			.content_block{
+				padding-left: 0px !important;
 				padding-top: 0px !important;
 				header{
 					h1{
@@ -438,32 +444,40 @@ main{
 			}
 			.post_summary{
 				margin-top: 15px;
+				width: 100%;
 				.category,
 				.book_level,
 				.book_author,
 				.illustrator,
 				.post_tag,
 				.book_publisher{
-					display: flex;
+					@include respond-to(xs){
+						display: flex;
+					}
+					@include respond-to(md){
+						display: grid;
+						grid-template-columns: 25% 2% 73%; 
+					}					
 					position: relative;
 					align-items: center;
 					@include clearfix;
 					h2{
 						margin: 0px 15px 0px 0px;
-						font-size: 1rem;
+					    font-size: 15px;
+					    font-weight: normal;
 					}
 					ul{
 						display: flex;
 						margin: 0px;
 						padding: 0px;
 						li{
-							margin-right: 15px;
+							margin-right: 10px;
 							list-style: none;
 						}
 					}
 				}
 				.button_actions{
-					display: block;
+					display: flex;
 				    width: 100%;
 				    margin-top: 15px;
 					button{
@@ -473,22 +487,22 @@ main{
 					    color: #555d67;
 					    cursor: pointer;
 					    display: inline-block;
-					    font-family: Nunito Sans;
-					    font-size: 1em;
+					    font-family: 'KhmerOScontent';
+					    // font-size: 1em;
 					    font-weight: 700;
 					    padding: .5rem 1rem;
 					    text-align: center;
 					    text-decoration: none;
 					    &#read_book_story{
-							background-color: $primary;
-							color: #ffffff;
+							background-color: #00a694;
+						    color: #fff;
 						    font-size: 1rem;
 						    font-weight: 400;
 						    overflow: hidden;
-						    -o-text-overflow: ellipsis;
 						    text-overflow: ellipsis;
 						    white-space: nowrap;
-						    padding: .5rem 1rem;
+						    padding: 4px 15px;
+						    margin-right: 7px;
 						    img{
 						    	height: 20px;
 							    bottom: 0px;
@@ -505,6 +519,10 @@ main{
 				overflow: hidden;
 				display: block;
     			position: relative;
+			    left: 0;
+			    right: 0;
+			    top: 0;
+			    bottom: 0;
     			@include respond-to(xs){
     				width: 100%;
     			}
@@ -512,6 +530,7 @@ main{
     				width: 250px;
     			}
     			img{
+    				display: block;
     				height: 100%;
     				width: 100%;
     				object-fit: cover;
@@ -532,6 +551,7 @@ main{
 				padding: 0px;
 				li{
 					list-style: none;
+					box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
 					@include respond-to(xs){
 						width: 100%;
 						margin-bottom: 15px;
@@ -545,12 +565,14 @@ main{
 							img{
 								width: 100%;
 								height: 100%;
+								display: block;
 							}
 						}
 						@include respond-to(md){
 							height: 160px;
 							overflow: hidden;
 							img{
+								display: block;
 								width: 100%;
 								height: 100%;
 								overflow: hidden;
@@ -572,7 +594,6 @@ main{
 						}
 					}
 					.relatedcontent{
-						box-shadow: 0px 2px 13px 0px rgba(209, 209, 209, 0.47);
 					    display: block;
 					    overflow: hidden;
 					    padding: 15px;
@@ -605,6 +626,7 @@ main{
 								padding: 0px;
 								li{
 									list-style: none;
+									box-shadow: none;
 									a{
 										font-size: 0.80rem;
 									}
@@ -669,11 +691,15 @@ footer{
 	&.site-footer{
 		position: relative;
 	    z-index: 200;
-	    padding: 15px;
+	    padding: 40px 0px;
 	    background: #027e71;
 	    color: #fff;
 	    font-size: 86%;
 	    line-height: 1.5;
+	    text-align: center;
+	    a{
+	    	color: #ffffff;
+	    }
 	}	
 }
 .display_toggle{
@@ -696,6 +722,10 @@ footer{
     display: block;
     position: relative;
     clear: both;
+    margin-top: 30px;
+    h2{
+    	font-size: 1rem;
+    }
     .nav-links{
     	display: flex;
     	justify-content: space-between;
@@ -733,6 +763,9 @@ footer{
 	    text-align: center;
 	    z-index: 2;
 	    position: relative;
+    }
+    &:hover{
+    	background-color: $primary;
     }
 }
 
@@ -835,8 +868,12 @@ body{
 		}
 		.site-header,
 		.site-main,
-		.site-footer{
+		.site-footer,
+		.top_banner{
 			opacity: 0;
+		}
+		.site-header{
+			display: none;
 		}
 	}
 
@@ -874,4 +911,108 @@ body{
     height: 22px;
     background-image: url('http://209.97.157.239/wp-content/themes/shanti/images/new-sprites.png');
 
+}
+header{
+	h1,h2{
+		&.entry-title{
+			font-family: 'AngDaunPov';
+		}
+	}
+}
+.archive,
+.home,
+.search-results{
+	.main-content{
+		display: flex;
+		width: 100%;
+		flex-direction: column;
+	}
+}
+.top_banner{
+	display: block;
+	width: 100%;
+	position: relative;
+	margin-bottom: 15px;
+	img{
+		display: block;
+	    position: relative;
+	    left: 0;
+	    right: 0;
+	    top: 0;
+	    bottom: 0;
+	    width: 100%;
+	}
+}
+.widget{
+	line-height: 1.78rem;
+}
+
+.error404,
+.search-no-results{
+	#secondary{
+		display: none;
+	}
+	#primary{
+		width: 100%;
+		display: block;
+		text-align: center;
+		section{
+			&.not-found{
+				form{
+					&.search-form{
+						font-family: 'KhmerOScontent';
+					    display: flex;
+					    max-width: 375px;
+					    margin: 15px auto auto auto;
+					    // align-items: flex-start;
+					    text-align: center;
+					    label{
+					    	width: 100%;
+					    }
+					    input{
+					    	font-family: 'KhmerOScontent';
+					    }
+						input[type="search"]{
+							display: block;
+						    height: calc(1.5em + .75rem + 2px);
+						    padding: .375rem .75rem;
+						    font-size: 1rem;
+						    font-weight: 400;
+						    line-height: 1.5;
+						    color: #495057;
+						    background-color: #fff;
+						    background-clip: padding-box;
+						    border: 1px solid #ced4da;
+						    width: 100%;
+						    // border-radius: .25rem;
+						    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+						    &:focus{
+						    	border-radius: 0px !important;
+						    }
+						}
+						input[type="submit"]{
+							@extend %button;
+							margin: 0px;	
+							padding: 4px 15px;						
+						}
+					}
+				}
+			}
+		}
+	}
+}
+.searach_box{
+	width: 100%;
+	display: block;
+	position: relative;
+	margin: 30px auto;
+}
+.video{
+	a{
+		&:hover{
+			.video_small_button{
+				background-color: $primary;
+			}
+		}
+	}
 }

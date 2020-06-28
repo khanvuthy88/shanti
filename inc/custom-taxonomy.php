@@ -37,7 +37,7 @@ function create_private_illustrator_tax() {
         'illustrator',
         'post',
         array(
-            'label' => __( 'Illustrator' ),
+            'label' => __( 'អ្នកគូររូប' ),
             'public' => true,
             'rewrite' => false,
             'hierarchical' => false,
@@ -52,7 +52,7 @@ function create_book_publisher_tax() {
         'book_publisher',
         'post',
         array(
-            'label' => __( 'Publisher' ),
+            'label' => __( 'អ្នកបោះពុម្ពផ្សាយ' ),
             'public' => true,
             'rewrite' => false,
             'hierarchical' => false,
