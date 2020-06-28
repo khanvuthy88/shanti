@@ -38,7 +38,7 @@
 			
 			<div class="searach_box">
 				<span class="screen-reader-text">ស្វែងរក៖</span>
-				<form role="search" method="get" class="search-form" action="http://shanti-volunteer.local/">
+				<form role="search" method="get" class="search-form" action="<?php bloginfo('url'); ?>">
 					<label>							
 						<input type="search" class="search-field" placeholder="ស្វែង​រក …" value="" name="s">
 					</label>
