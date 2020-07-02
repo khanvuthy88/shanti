@@ -227,7 +227,7 @@
 							        if ( ! empty( $terms ) ) {
 							        	?>
 							        	<div class="book_author">
-							        		<h2>អ្នកនិពន្ធ:</h2>
+							        		<h2>អ្នកនិពន្ធ៖</h2>
 							        		<ul>
 							        			<?php foreach ($terms as $term) { ?>
 							        				<li>
@@ -241,7 +241,7 @@
 							        <?php } ?>
 							        <?php if (! empty($terms_illustrator)) { ?>
 							        	<div class="illustrator">
-							        		<h2>អ្នកគូររូប:</h2>
+							        		<h2>វិចិត្រករ៖</h2>
 							        		<ul>
 							        			<?php foreach ($terms_illustrator as $term) { ?>
 							        				<li>
