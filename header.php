@@ -39,7 +39,7 @@
 
 	<header id="masthead" class="site-header">
 		<div class="site-branding">
-			<a href="">
+			<a href="<?php echo get_home_url(); ?>">
 				<img style="max-width: 300px; height: auto;" src="<?php echo get_template_directory_uri().'/assets/images/logo.jpg'; ?>">
 			</a>
 			<?php
