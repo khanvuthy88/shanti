@@ -132,10 +132,21 @@
 				<?php 
 				$terms = get_the_terms( $post, 'book_author' );
 				$terms_illustrator = get_the_terms( $post, 'illustrator' ); 
+
+				$h2_title = '';
+				$acf_author= get_field('_acf_author_extract_form_edited');
+				if ($acf_author == 'author') {
+					$h2_title = 'អ្នកនិពន្ធ';
+				}elseif ($acf_author == 'extract_from') {
+					$h2_title = 'ដកស្រង់ចេញពី';
+				}else{
+					$h2_title = 'រៀបរៀងដោយ';
+				}
+
 		        if ( ! empty( $terms ) ) {
 		        	?>
 		        	<div class="book_author">
-		        		<h2>អ្នកនិពន្ធ:</h2>
+		        		<h2><?php echo $h2_title; ?>៖</h2>
 		        		<ul>
 		        			<?php foreach ($terms as $term) { ?>
 		        				<li>
@@ -149,7 +160,7 @@
 		        <?php } ?>
 		        <?php if (! empty($terms_illustrator)) { ?>
 		        	<div class="illustrator">
-		        		<h2>អ្នកគូររូប:</h2>
+		        		<h2>វិចិត្រករ៖</h2>
 		        		<ul>
 		        			<?php foreach ($terms_illustrator as $term) { ?>
 		        				<li>
