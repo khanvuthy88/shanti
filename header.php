@@ -39,8 +39,11 @@
 
 	<header id="masthead" class="site-header">
 		<div class="site-branding">
+			<a href="">
+				<img style="max-width: 300px; height: auto;" src="<?php echo get_template_directory_uri().'/assets/images/logo.jpg'; ?>">
+			</a>
 			<?php
-			the_custom_logo();
+			// the_custom_logo();
 			?>
 			<div class="menu-toggle_mobile">
 				<span id="menu_toggle_id" class="menu-toggle">
@@ -52,5 +55,5 @@
 	</header><!-- #masthead -->
 
 	<div class="top_banner">
-		<img src="<?php echo get_template_directory_uri().'/assets/images/8858786900067.jpg'; ?>" alt="Banner"/>
+		<img src="<?php echo get_template_directory_uri().'/assets/images/website_banner.jpg'; ?>" alt="Banner"/>
 	</div>
