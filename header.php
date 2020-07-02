@@ -39,8 +39,9 @@
 
 	<header id="masthead" class="site-header">
 		<div class="site-branding">
-			<a href="<?php echo get_home_url(); ?>">
-				<img style="max-width: 300px; height: auto;" src="<?php echo get_template_directory_uri().'/assets/images/logo.jpg'; ?>">
+			<a title="<?php echo get_bloginfo( 'name' ); ?>" href="<?php echo get_home_url(); ?>">
+				<img class="mobile_display" src="<?php echo get_template_directory_uri().'/assets/images/logo.jpg'; ?>" alt="<?php echo get_bloginfo( 'name' ); ?>"/>
+				<img class="desktop_display" style="width: 100%; height: auto;" src="<?php echo get_template_directory_uri().'/assets/images/website_banner.jpg'; ?>" alt="<?php echo get_bloginfo( 'name' ); ?>"/>
 			</a>
 			<?php
 			// the_custom_logo();
@@ -53,7 +54,3 @@
 
 		</div><!-- .site-branding -->
 	</header><!-- #masthead -->
-
-	<div class="top_banner">
-		<img src="<?php echo get_template_directory_uri().'/assets/images/website_banner.jpg'; ?>" alt="Banner"/>
-	</div>

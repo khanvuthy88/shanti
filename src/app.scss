@@ -178,15 +178,20 @@ header{
 		@include respond-to(xs){
 			border-bottom: solid 2px $primary;
 		}
-		padding: 15px;
+		@include respond-to(md){
+			padding: 0px;
+		}
+		
 	    border-top: solid 2px #00a694;
 	    // background: url('/assets/images/bg_shadow_up.png') left bottom no-repeat;
 	    line-height: 1.5;
+	    margin-bottom: 30px;
 
 	    .site-branding{
 	    	@include respond-to(xs){
 	    		width: 100%;
 	    		display: flex;
+	    		padding: 15px;
 	    	}
 	    	@include respond-to(md){
 	    		width: auto;
@@ -203,6 +208,24 @@ header{
 		    			@include respond-to(md){
 				    		width: auto;
 				    	}
+	    			}
+	    			&.mobile_display{
+	    				@include respond-to(xs){
+	    					display: block;
+	    					width: 100%;
+	    					padding-right: 15px;
+	    				}
+	    				@include respond-to(md){
+	    					display: none;
+	    				}
+	    			}
+	    			&.desktop_display{
+	    				@include respond-to(xs){
+	    					display: none;
+	    				}
+	    				@include respond-to(md){
+	    					display: block;
+	    				}
 	    			}
 	    		}
 	    	}
