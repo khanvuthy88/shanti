@@ -29,6 +29,8 @@ if ( ! function_exists( 'shanti_volunteer_association_cambodia_setup' ) ) :
 		 */
 		load_theme_textdomain( 'shanti-volunteer-association-cambodia', get_template_directory() . '/languages' );
 
+		add_theme_support( 'post-formats', array('video' ) );
+
 		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
 
@@ -230,8 +232,13 @@ flush_rewrite_rules( false );
 add_filter( 'pre_get_posts', 'my_get_posts' );
 
 function my_get_posts( $query ) {
-	if ( $query->is_home() && $query->is_main_query() )
+	if ( $query->is_home() && $query->is_main_query() ){
 		$query->set( 'post_type', array( 'post', 'video') );
+		$query->set('orderby', 'meta_value');
+		$query->set('meta_key', '_acf_order_post');
+		$query->set('order', 'ASC'); 
+	}
+	
 	return $query;
 }
 
