@@ -8,7 +8,17 @@
  */
 
 ?>
-
+<?php  
+	$h2_title = '';
+	$acf_author= get_field('_acf_author_extract_form_edited');
+	if ($acf_author == 'author') {
+		$h2_title = 'អ្នកនិពន្ធ';
+	}elseif ($acf_author == 'extract_from') {
+		$h2_title = 'ដកស្រង់ចេញពី';
+	}else{
+		$h2_title = 'រៀបរៀងដោយ';
+	}
+?>
 <?php if (is_singular() and 'post' == get_post_type()): ?>
 	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 		<div class="content_block">
@@ -23,17 +33,7 @@
 				?>
 				<?php if ($terms): ?>
 					<div class="book_author">
-						<?php  
-							$h2_title = '';
-							$acf_author= get_field('_acf_author_extract_form_edited');
-							if ($acf_author == 'author') {
-								$h2_title = 'អ្នកនិពន្ធ';
-							}elseif ($acf_author == 'extract_from') {
-								$h2_title = 'ដកស្រង់ចេញពី';
-							}else{
-								$h2_title = 'រៀបរៀងដោយ';
-							}
-						?>
+						
 						<h2><?php echo $h2_title; ?></h2>
 						<div>៖</div>
 						<ul>
@@ -132,17 +132,6 @@
 				<?php 
 				$terms = get_the_terms( $post, 'book_author' );
 				$terms_illustrator = get_the_terms( $post, 'illustrator' ); 
-
-				$h2_title = '';
-				$acf_author= get_field('_acf_author_extract_form_edited');
-				if ($acf_author == 'author') {
-					$h2_title = 'អ្នកនិពន្ធ';
-				}elseif ($acf_author == 'extract_from') {
-					$h2_title = 'ដកស្រង់ចេញពី';
-				}else{
-					$h2_title = 'រៀបរៀងដោយ';
-				}
-
 		        if ( ! empty( $terms ) ) {
 		        	?>
 		        	<div class="book_author">
@@ -227,7 +216,7 @@
 							        if ( ! empty( $terms ) ) {
 							        	?>
 							        	<div class="book_author">
-							        		<h2>អ្នកនិពន្ធ៖</h2>
+							        		<h2><?php echo $h2_title; ?>៖</h2>
 							        		<ul>
 							        			<?php foreach ($terms as $term) { ?>
 							        				<li>
