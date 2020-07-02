@@ -214,7 +214,7 @@
 									$terms_illustrator = get_the_terms( $post, 'illustrator' );
 
 									$h2_title = '';
-									$acf_author= get_field('_acf_author_extract_form_edited', the_ID());
+									$acf_author= get_field('_acf_author_extract_form_edited', get_the_ID());
 									if ($acf_author == 'author') {
 										$h2_title = 'អ្នកនិពន្ធ';
 									}elseif ($acf_author == 'extract_from') {
