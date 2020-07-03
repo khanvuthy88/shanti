@@ -436,9 +436,15 @@ main{
 			box-shadow: none !important;
 			@include respond-to(md){
 				width: 100% !important;
-				display: grid;
-				grid-template-columns: 68% 32%;	
 			}
+			.main_wrapper{
+				@include respond-to(md){
+					width: 100% !important;
+					display: grid;
+					grid-template-columns: 68% 32%;
+				}
+			}
+			
 			&.video{
 				@include respond-to(md){
 					width: 100% !important;
@@ -467,7 +473,7 @@ main{
 			}
 			.entry-content{
 				width: 100% !important;
-			}
+				margin-top: 15px;			}
 			.post_summary{
 				margin-top: 15px;
 				width: 100%;

@@ -21,101 +21,106 @@
 ?>
 <?php if (is_singular() and 'post' == get_post_type()): ?>
 	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-		<div class="content_block">
-			<header class="entry-header">
-				<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-			</header><!-- .entry-header -->
-			<div class="post_summary">
-				<?php 
-					$terms = get_the_terms( $post, 'book_author' );
-					$terms_illustrator = get_the_terms( $post, 'illustrator' );
-					$terms_publisher = get_the_terms( $post, 'book_publisher' );
-				?>
-				<?php if ($terms): ?>
-					<div class="book_author">
-						
-						<h2><?php echo $h2_title; ?></h2>
-						<div>៖</div>
-						<ul>
-							<?php foreach ($terms as $term) { ?>
-		        				<li>
-		        					<a href="<?php echo esc_url(get_term_link($term->slug, 'book_author')) ?>">
-		        						<?php echo esc_html($term->name) ?>
-				        			</a>
-				        		</li>
-		        			<?php } ?>
-						</ul>
+		<div class="main_wrapper">
+			<div class="content_block">
+				<header class="entry-header">
+					<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+				</header><!-- .entry-header -->
+				<div class="post_summary">
+					<?php 
+						$terms = get_the_terms( $post, 'book_author' );
+						$terms_illustrator = get_the_terms( $post, 'illustrator' );
+						$terms_publisher = get_the_terms( $post, 'book_publisher' );
+					?>
+					<?php if ($terms): ?>
+						<div class="book_author">
+							
+							<h2><?php echo $h2_title; ?></h2>
+							<div>៖</div>
+							<ul>
+								<?php foreach ($terms as $term) { ?>
+			        				<li>
+			        					<a href="<?php echo esc_url(get_term_link($term->slug, 'book_author')) ?>">
+			        						<?php echo esc_html($term->name) ?>
+					        			</a>
+					        		</li>
+			        			<?php } ?>
+							</ul>
 
+						</div>
+					<?php endif ?>
+					<?php if ($terms_illustrator): ?>
+						<div class="illustrator">						
+							<h2>វិចិត្រករ</h2>
+							<div>៖</div>
+							<ul>
+								<?php foreach ($terms_illustrator as $term) { ?>
+			        				<li>
+			        					<a href="<?php echo esc_url(get_term_link($term->slug, 'illustrator')) ?>">
+			        						<?php echo esc_html($term->name) ?>
+					        			</a>
+					        		</li>
+			        			<?php } ?>
+							</ul>
+
+						</div>
+					<?php endif ?>
+
+					<?php if ($terms_publisher): ?>
+						<div class="book_publisher">						
+							<h2>បោះពុម្ភឆ្នាំ</h2>
+							<div>៖</div>
+							<ul>
+								<?php foreach ($terms_publisher as $term) { ?>
+			        				<li>
+			        					<a href="<?php echo esc_url(get_term_link($term->slug, 'book_publisher')) ?>">
+			        						<?php echo esc_html($term->name) ?>
+					        			</a>
+					        		</li>
+			        			<?php } ?>
+							</ul>
+
+						</div>
+					<?php endif ?>
+
+					<div class="button_actions">
+						<!-- <button data-url="<?php echo bloginfo('url').'/book-pdf-view?pid='.get_the_ID(); ?>" id="read_book_story"> -->
+						<button id="read_book_story" data-url="<?php echo get_field('_acf_pdf_file', get_the_ID()); ?>">
+							<img src="<?php echo get_template_directory_uri().'/assets/images/booking.svg'; ?>"/>អានរឿង</button>
+						<button id="save_off_line">រក្សាទុក</button>
 					</div>
-				<?php endif ?>
-				<?php if ($terms_illustrator): ?>
-					<div class="illustrator">						
-						<h2>វិចិត្រករ</h2>
-						<div>៖</div>
-						<ul>
-							<?php foreach ($terms_illustrator as $term) { ?>
-		        				<li>
-		        					<a href="<?php echo esc_url(get_term_link($term->slug, 'illustrator')) ?>">
-		        						<?php echo esc_html($term->name) ?>
-				        			</a>
-				        		</li>
-		        			<?php } ?>
-						</ul>
-
-					</div>
-				<?php endif ?>
-
-				<?php if ($terms_publisher): ?>
-					<div class="book_publisher">						
-						<h2>រោងពុម្ព</h2>
-						<div>៖</div>
-						<ul>
-							<?php foreach ($terms_publisher as $term) { ?>
-		        				<li>
-		        					<a href="<?php echo esc_url(get_term_link($term->slug, 'book_publisher')) ?>">
-		        						<?php echo esc_html($term->name) ?>
-				        			</a>
-				        		</li>
-		        			<?php } ?>
-						</ul>
-
-					</div>
-				<?php endif ?>
-
-				<div class="button_actions">
-					<!-- <button data-url="<?php echo bloginfo('url').'/book-pdf-view?pid='.get_the_ID(); ?>" id="read_book_story"> -->
-					<button id="read_book_story" data-url="<?php echo get_field('_acf_pdf_file', get_the_ID()); ?>">
-						<img src="<?php echo get_template_directory_uri().'/assets/images/booking.svg'; ?>"/>អានរឿង</button>
-					<button id="save_off_line">រក្សាទុក</button>
 				</div>
 			</div>
-		</div>
-		<?php shanti_volunteer_association_cambodia_post_thumbnail(); ?>
-		<div class="entry-content">
-			<?php
-			the_content(
-				sprintf(
-					wp_kses(
-						/* translators: %s: Name of current post. Only visible to screen readers */
-						__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'shanti-volunteer-association-cambodia' ),
-						array(
-							'span' => array(
-								'class' => array(),
-							),
-						)
-					),
-					wp_kses_post( get_the_title() )
-				)
-			);
+			<?php shanti_volunteer_association_cambodia_post_thumbnail(); ?>		
 
-			wp_link_pages(
-				array(
-					'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'shanti-volunteer-association-cambodia' ),
-					'after'  => '</div>',
-				)
-			);
-			?>
-		</div><!-- .entry-content -->
+		</div>
+
+		<div class="entry-content">
+				<?php
+				the_content(
+					sprintf(
+						wp_kses(
+							/* translators: %s: Name of current post. Only visible to screen readers */
+							__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'shanti-volunteer-association-cambodia' ),
+							array(
+								'span' => array(
+									'class' => array(),
+								),
+							)
+						),
+						wp_kses_post( get_the_title() )
+					)
+				);
+
+				wp_link_pages(
+					array(
+						'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'shanti-volunteer-association-cambodia' ),
+						'after'  => '</div>',
+					)
+				);
+				?>
+			</div><!-- .entry-content -->
+		
 	</article>
 <?php endif ?>
 
