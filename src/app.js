@@ -22,14 +22,7 @@ const openPDF = ()=>{
 			if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 				const actionUrl = evt.target.dataset['url'];
 				window.open(actionUrl);
-			}else{
-				document.body.id = 'view_book';
 			}
-			
-			// document.getElementsByTagName('body').setAttribute('id','view_book');
-			// const actionUrl = evt.target.dataset['url'];
-			// window.open(actionUrl);
-
 		});
 	}
 	

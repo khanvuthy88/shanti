@@ -149,16 +149,18 @@ function shanti_volunteer_association_cambodia_scripts() {
 	wp_enqueue_style( 'shanti-volunteer-association-cambodia-style', get_stylesheet_uri(), array(), _S_VERSION );
 	wp_style_add_data( 'shanti-volunteer-association-cambodia-style', 'rtl', 'replace' );
 
-	wp_enqueue_script( 'shanti-volunteer-association-cambodia-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
+	// wp_enqueue_script( 'shanti-volunteer-association-cambodia-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 
-	wp_enqueue_script( 'shanti-volunteer-association-cambodia-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), _S_VERSION, true );
+	// wp_enqueue_script( 'shanti-volunteer-association-cambodia-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), _S_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 	if ( is_single() && 'post' == get_post_type() ) {
-		wp_enqueue_script('jquery_tst', get_template_directory_uri().'/assets/vendors/turnjs/extras/jquery.min.1.7.js', array(), _S_VERSION, true);
-		wp_enqueue_script( 'modernizr-js', get_template_directory_uri(). '/assets/vendors/turnjs/extras/modernizr.2.5.3.min.js', array(), _S_VERSION, true);
+		wp_enqueue_style('dflip-css', get_template_directory_uri(). '/assets/vendors/dflip/css/dflip.min.css', array(), _S_VERSION, false);
+		wp_enqueue_style('themify-icons', get_template_directory_uri(). '/assets/vendors/dflip/css/themify-icons.min.css', array(), _S_VERSION, false);
+		wp_enqueue_script('jquery-01', get_template_directory_uri(). '/assets/vendors/dflip/js/libs/jquery.min.js', array(), _S_VERSION, true);
+		wp_enqueue_script('dflip-js', get_template_directory_uri(). '/assets/vendors/dflip/js/dflip.min.js', array(), _S_VERSION, true);
 	}
 }
 add_action( 'wp_enqueue_scripts', 'shanti_volunteer_association_cambodia_scripts' );
@@ -274,57 +276,3 @@ function insert_fb_in_head() {
     }
 }
 add_action( 'wp_head', 'insert_fb_in_head', 5 );
-
-function modalScriptSinglePost()
-{
-	if (is_single() && 'post' == get_post_type()) {
-		?>
-		<script type="text/javascript">
-			
-			function loadApp() {
-
-				// Create the flipbook
-
-				$('.flipbook').turn({
-						// Width
-
-						width:922,
-						
-						// Height
-
-						height:600,
-
-						// Elevation
-
-						elevation: 50,
-						
-						// Enable gradients
-
-						gradients: true,
-						
-						// Auto center this flipbook
-
-						autoCenter: true
-
-				});
-			}
-			var clost_book = document.querySelector('#book_block > div.book_block_bar > a');
-			clost_book.addEventListener('click', (evt)=>{
-				document.body.id = '';
-			});
-
-			// Load the HTML4 version if there's not CSS transform
-
-			yepnope({
-
-				test : Modernizr.csstransforms,
-				yep: ["<?php echo get_template_directory_uri().'/assets/vendors/turnjs/lib/turn.js'; ?>"],
-				nope: ["<?php echo get_template_directory_uri().'/assets/vendors/turnjs/lib/turn.html4.min.js'; ?>"],
-				both: ["<?php echo get_template_directory_uri().'/assets/vendors/turnjs/basic.css'; ?>"],
-				complete: loadApp
-			});
-		</script>
-		<?php
-	}
-}
-add_action( 'wp_footer', 'modalScriptSinglePost', 100 );

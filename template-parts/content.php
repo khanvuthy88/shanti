@@ -83,11 +83,33 @@
 						</div>
 					<?php endif ?>
 
-					<div class="button_actions">
-						<!-- <button data-url="<?php echo bloginfo('url').'/book-pdf-view?pid='.get_the_ID(); ?>" id="read_book_story"> -->
-						<button id="read_book_story" data-url="<?php echo get_field('_acf_pdf_file', get_the_ID()); ?>">
+					<div class="button_actions" id='flipbookContainer'>
+						<?php $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
+							
+						<button class="_df_button" id="read_book_story" data-url="<?php echo get_field('_acf_pdf_file', get_the_ID()); ?>">
 							<img src="<?php echo get_template_directory_uri().'/assets/images/booking.svg'; ?>"/>អានរឿង</button>
+
 						<button id="save_off_line">រក្សាទុក</button>
+						<?php if (get_field('_acf_book_picture', get_the_ID())): ?>
+							<?php $book_source = array(); ?>
+							<div id="book_block">
+								<?php while( the_repeater_field('_acf_book_picture', get_the_ID()) ) { ?>
+									<?php array_push($book_source, get_sub_field('_acf_book_page')); ?>
+									<div class="source_url" data-url="<?php echo get_sub_field('_acf_book_page'); ?>" style="background-image:url('<?php echo get_sub_field('_acf_book_page'); ?>')" width="100%" height="100%"></div>
+								<?php } ?>
+							</div>
+						<?php endif ?>
+						<script type="text/javascript">
+							var array_source = []
+							var ele = document.getElementsByClassName('source_url');
+							for (var i = 0; i < ele.length; i++) {
+								array_source.push(ele[i].getAttribute('data-url'));
+								console.log(ele[i].getAttribute('data-url'));
+							}
+							var option_read_book_story = {
+							     source : array_source,
+							};
+						</script>
 					</div>
 				</div>
 			</div>

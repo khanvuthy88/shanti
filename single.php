@@ -24,23 +24,7 @@ get_header();
 		</div>
 
 	</main><!-- #main -->
-	<?php if (get_field('_acf_book_picture', get_the_ID())): ?>
-			<div id="book_block">
-				<div class="book_block_bar">
-					<a class="icon quit"></a>
-				</div>
-				
-				<div class="flipbook-viewport">
-					<div class="container">
-						<div class="flipbook">
-							<?php while( the_repeater_field('_acf_book_picture', get_the_ID()) ) { ?>
-								<div style="background-image:url('<?php echo get_sub_field('_acf_book_page'); ?>')" width="100%" height="100%"></div>
-							<?php } ?>
-						</div>
-					</div>
-				</div>
-			</div>
-    	<?php endif ?>
+	
 
 <?php
 get_footer();
