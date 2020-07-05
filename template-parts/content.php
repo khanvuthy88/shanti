@@ -95,7 +95,7 @@
 							<div id="book_block">
 								<?php while( the_repeater_field('_acf_book_picture', get_the_ID()) ) { ?>
 									<?php array_push($book_source, get_sub_field('_acf_book_page')); ?>
-									<div class="source_url" data-url="<?php echo get_sub_field('_acf_book_page'); ?>" style="background-image:url('<?php echo get_sub_field('_acf_book_page'); ?>')" width="100%" height="100%"></div>
+									<div class="source_url" data-url="<?php echo get_sub_field('_acf_book_page'); ?>"></div>
 								<?php } ?>
 							</div>
 						<?php endif ?>
