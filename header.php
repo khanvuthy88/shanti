@@ -23,6 +23,10 @@
 
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
+
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0&appId=1021191597935387&autoLogAppEvents=1" nonce="78YaF2nP"></script>
+
 <div id="mobile_sidenav">
 	<a href="javascript:void(0)" class="closebtn">&times;</a>
 	<?php
