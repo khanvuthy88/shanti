@@ -104,7 +104,6 @@
 							var ele = document.getElementsByClassName('source_url');
 							for (var i = 0; i < ele.length; i++) {
 								array_source.push(ele[i].getAttribute('data-url'));
-								console.log(ele[i].getAttribute('data-url'));
 							}
 							var option_read_book_story = {
 							     source : array_source,
