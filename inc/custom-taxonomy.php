@@ -9,8 +9,9 @@ function create_book_level_tax() {
         array(
             'label' => __( 'Level' ),
             'public' => true,
-            'rewrite' => false,
+            'rewrite' => true,
             'hierarchical' => false,
+            'has_archive' => true,
         )
     );
 }
@@ -24,8 +25,9 @@ function create_book_author_tax() {
         array(
             'label' => __( 'Author' ),
             'public' => true,
-            'rewrite' => false,
+            'rewrite' => true,
             'hierarchical' => false,
+            'has_archive' => true,
         )
     );
 }
@@ -39,8 +41,9 @@ function create_private_illustrator_tax() {
         array(
             'label' => __( 'អ្នកគូររូប' ),
             'public' => true,
-            'rewrite' => false,
+            'rewrite' => true,
             'hierarchical' => false,
+            'has_archive' => true,
         )
     );
 }
@@ -54,8 +57,9 @@ function create_book_publisher_tax() {
         array(
             'label' => __( 'អ្នកបោះពុម្ពផ្សាយ' ),
             'public' => true,
-            'rewrite' => false,
+            'rewrite' => true,
             'hierarchical' => false,
+            'has_archive' => true,
         )
     );
 }
