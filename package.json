@@ -4,6 +4,7 @@
   "description": "Shanti Volunteer Association Cambodia",
   "main": "webpack.mix.js",
   "dependencies": {
+    "bootstrap": "^4.5.0",
     "cross-env": "^7.0.2",
     "jquery": "^3.5.0",
     "laravel-mix": "^5.0.4",
