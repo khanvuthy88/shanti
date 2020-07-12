@@ -63,6 +63,7 @@ $third: #f7f8f8;
 	margin: 4px 2px;
 	transition-duration: 0.4s;
 	cursor: pointer;
+	font-family: "KhmerOScontent";
 }
 
 *{
@@ -74,7 +75,7 @@ $third: #f7f8f8;
 body{
 	background: #ecedd6;
     color: #727171;
-    font-size: 14px;
+    font-size: .9rem;
     text-align: center;
     line-height: 1.8;
     margin: 0px auto;
@@ -98,11 +99,22 @@ a{
 	color: $primary;
 	text-decoration: none;
 }
-
+h1,h2{
+	font-size: inherit;
+	&.entry-title{
+		font-family: 'AngDaunPov';
+		padding: 15px 0px;
+		margin-bottom: 0px;
+		display: block;
+		height: auto;
+		font-size: 1.3rem;
+	}
+}
 #page{
 	width: 100%;
 	display: flex;
 	flex-direction: column;
+	overflow: hidden;
 	@include media-breakpoint-up(sm){
 		width: 100%;
 	}
@@ -132,7 +144,7 @@ a{
 	background-color: $primary;
 	overflow-x: hidden;
 	transition: 0.5s;
-	padding-top: 60px;
+	padding-top: 15px;
 	text-align:center;
 	a{
 		text-decoration: none;
@@ -169,6 +181,7 @@ header{
 	    .site-branding{
 			display: flex;
 			padding: 15px;
+			border-bottom: 2px solid $primary;
 	    	@include media-breakpoint-up(sm){
 				width: 100%;
 				max-height: 100px;
@@ -268,17 +281,26 @@ header{
 	padding: 15px;
 	grid-template-columns: 100%;
 	@include media-breakpoint-up(sm){
-		display: flex;
-		flex-direction: column;
 		grid-template-columns: 100%;
+	}
+	@include media-breakpoint-up(md){
+		grid-template-columns: 25% 73%;
+	}
+	@include media-breakpoint-up(lg){
+		grid-template-columns: 25% 73%;
+	}
+	@include media-breakpoint-up(xl){
+		grid-template-columns: 25% 73%;
 	}
 }
 #secondary{
 	width: 100%;
 	display: block;
+	overflow: hidden;
 	.widget{
 		display: block;
 		width: 100%;
+		margin-bottom: 30px;
 		ul{
 			margin: 0px;
 			padding: 0px;
@@ -298,6 +320,8 @@ header{
 		}
 	}
 	.widget_recent_entries{
+		background-color: $third;
+		padding: 15px;
 		.widget-title{
 			&:before{
 				@extend %fontawesome;
@@ -323,19 +347,368 @@ header{
 		width: 100%;
 		flex-direction: column;
 		position: relative;
-		article{
-			overflow: hidden;
-			box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
-			@include grid(1, 3%);
+		.content_wrapper{
+			display: grid;
+			grid-template-columns: 100%;
+			margin: 0 auto;
+			width: 100%;
+			gap: 15px;
+			grid-template-rows: 282px;
 			@include media-breakpoint-up(sm){
-				@include grid(2, 2%);
+				grid-template-columns: repeat(2, 1fr);
+				gap: 15px;
 			}
 			@include media-breakpoint-up(md){
-				@include grid(3, 2%);
+				grid-template-columns: repeat(2, 1fr);
+				gap: 15px;
 			}
 			@include media-breakpoint-up(lg){
-				@include grid(3, 2%);
+				grid-template-columns: repeat(3, 1fr);
+				gap: 15px;
 			}
 		}
+		article{
+			overflow: hidden;
+			box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);			
+			display: block;
+			a{
+				&.post-thumbnail{
+					max-height: 168px;
+					position: relative;
+					overflow: hidden;
+					display: block;
+					&:hover{
+						.video_small_button{
+							background-color: #00a694;
+							color: #fff;
+						}
+					}
+					img{
+						width: 100%;
+						display: block;
+						height: auto;						
+					}
+				}
+			}
+			.content_block{
+				display: block;
+				overflow: hidden;
+				padding: 15px;
+				.entry-title{
+					font-size: 1rem;
+					padding: 5px 0;
+				}
+				.book_author,
+				.illustrator{
+					width: 100%;
+					position: relative;
+					display: grid;
+					align-items: center;
+					grid-template-columns: 90px 15px auto;
+					overflow: hidden;
+					h2{
+						font-size: inherit;
+						font-weight: normal;
+					}
+					ul{
+						margin: 0px;
+						padding: 0px;
+						li{
+							list-style: none;
+							a{
+								font-size: inherit;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+.ellipsis{
+	overflow-x: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.fb_iframe_widget{
+	width: 100%;
+	span{
+		width: 100%;
+		iframe{
+			width: 100%;
+		}
+	}
+}
+footer{
+	&.site-footer{
+		position: relative;
+		z-index: 200;
+		padding: 40px 0;
+		background: #027e71;
+		color: #fff;
+		font-size: 86%;
+		line-height: 1.5;
+		text-align: center;
+		a{
+			color: #fff;
+		}
+	}
+}
+.video_small_button{
+	position: absolute;
+    background: rgba(0,0,0,.5);
+    text-align: center;
+    height: 60px;
+    width: 60px;
+    margin-left: -30px;
+    margin-top: -30px;
+    padding: 17px 0 0 5px;
+    top: 50%;
+    left: 50%;
+    transition: all .25s ease-in-out;
+    border: 2px solid #fff;
+    border-radius: 50%;
+	cursor: pointer;
+	color: #fff;
+	&:hover{
+		background-color: #00a694;
+		color: #fff;
+	}
+}
+.entry-content{
+	ul{
+		margin: 0px 0px 1rem 1rem;
+		padding: 1rem;
+		padding-top: 0px;
+		padding-bottom: 0px;
+	}
+}
+.short_content_vt{
+	width: 100%;
+	.book_author,
+	.illustrator{
+		grid-template-columns: 56px 15px auto !important;
+	}
+}
+.display_toggle{
+	width: 100% !important;
+}
+.closebtn{
+	position: absolute;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    top: 15px;
+}
+.single{
+	#primary{
+		gap: 1%;
+		@include media-breakpoint-up(lg){
+			gap: 2%;
+		}
+		.main-content{
+			display: flex;
+			position: relative;
+			flex-direction: column;
+			width: 100%;
+			height: auto;
+			overflow: hidden;
+			article{
+				display: flex;
+				width: 100%;
+				position: relative;
+				flex-direction: column;
+				margin-bottom: 15px;
+				.main_wrapper{
+					width: 100%;
+					display: block;
+					margin-bottom: 15px;
+					@include media-breakpoint-up(sm){
+						display: grid;
+						grid-template-columns: 60% 40%;
+					}
+				}
+				.content_block{
+					display: flex;
+					flex-direction: column;
+					width: 100%;
+					.entry-header{
+						width: 100%;
+					}
+					.post_summary{
+						width: 100%;
+						display: flex;
+						flex-direction: column;
+						position: relative;
+						.book_author,
+						.illustrator,
+						.book_publisher{
+							display: grid;
+							width: 100%;
+							position: relative;
+							align-items: center;
+							grid-template-columns: 110px 15px auto;
+							font-size: inherit;
+							ul{
+								margin: 0px;
+								padding: 0px;
+								li{
+									list-style: none;
+									a{
+										font-size: inherit;
+										font-weight: normal;
+									}
+								}
+							}
+						}						
+					}
+				}
+				.post-thumbnail{
+					img{
+						width: 100%;
+						height: auto;
+					}
+				}
+				.entry-content{
+					font-size: inherit;
+				}				
+			}
+		}
+	}
+}
+#related_posts{
+	width: 100%;
+	display: block;
+	h3{
+		border-bottom: 2px solid $primary;
+		margin-bottom: 15px;
+	}
+	ul{
+		display: block;
+		width: 100%;
+		@include media-breakpoint-up(sm){
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 15px;
+			padding: 5px;
+			margin-bottom: 0px;
+		}
+		@include media-breakpoint-up(md){
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 15px;
+		}
+		@include media-breakpoint-up(lg){
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 15px;
+		}
+		@include media-breakpoint-up(xl){
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 15px;
+		}
+		li{
+			list-style: none;
+			margin-bottom: 15px;
+			box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+			display: flex;
+			flex-direction: column;
+			@include media-breakpoint-up(sm){
+				margin-bottom: 0px;
+			}
+			.relatedthumb,
+			.relatedcontent{
+				width: 100%;
+			}
+			.relatedthumb{
+				display: block;
+				a{
+					width: 100%;
+					position: relative;
+					max-height: 194px;
+					display: block;
+					overflow: hidden;
+					img{
+						width: 100%;
+						height: auto;
+					}
+				}
+			}
+			.relatedcontent{
+				display: flex;
+				flex-direction: column;
+				width: 100%;		
+				padding: 15px;		
+				.book_author,
+				.illustrator{
+					width: 100%;
+					display: grid;
+					grid-template-columns: 90px 15px auto;
+					align-items: center;					
+				}
+				h2{
+					&.entry-title{
+						padding: 0px;
+					}
+				}
+				ul{
+					width: 100%;
+					margin: 0px;
+					padding: 0px;
+					display: block;
+					li{
+						list-style: none;
+						box-shadow: none;
+						padding: 0px;
+						margin: 0px;
+						text-overflow: ellipsis;
+						overflow: hidden;
+						white-space: nowrap;
+					}
+				}
+
+			}
+		}
+	}
+}
+
+.button_actions,
+.related_action_button{
+	display: flex;
+	width: 100%;
+	margin: 15px 0px;
+	button{
+		@extend %button;
+		background-color: #00a694;
+		color: #fff;
+		font-size: 1rem;
+		font-weight: 400;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		padding: 4px 15px;
+		margin-right: 7px;
+		&#save_off_line,
+		&#related_save_off_line{
+			border-radius: 3px;
+		}
+		img{
+			height: 20px;
+			bottom: 0;
+			font-size: 1.2rem;
+			margin-right: 7px;
+			margin-bottom: -5px;
+		}
+	}
+}
+.related_action_button{
+	border-top: 1px solid $primary;
+    margin: 0px;
+    padding: 7px;
+    display: flex;
+	justify-content: space-around;
+	button{
+		width: 50%;
 	}
 }
