@@ -91,15 +91,6 @@
 						<div class="relatedthumb">
 							<a href="<?php the_permalink()?>" rel="bookmark" title="<?php the_title(); ?>">	
 								<?php the_post_thumbnail(); ?>
-								<div class="like_and_read_number">
-									<div class="like_read">
-										<div class="like"><i class="fa fa-heart" aria-hidden="true"></i> 333</div>
-										<div class="read"><i class="fa fa-book" aria-hidden="true"></i> 333</div>
-									</div>
-									<div class="level">
-										<p>level 34</p>
-									</div>
-								</div>
 							</a>
 						</div>
 						<div class="relatedcontent">

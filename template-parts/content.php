@@ -10,9 +10,11 @@
 ?>
 <?php  
 	$h2_title = '';
+	$short_content = 'long_content_vt';
 	$acf_author= get_field('_acf_author_extract_form_edited');
 	if ($acf_author == 'author') {
 		$h2_title = 'អ្នកនិពន្ធ';
+		$short_content = 'short_content_vt';
 	}elseif ($acf_author == 'extract_from') {
 		$h2_title = 'ដកស្រង់ចេញពី';
 	}else{
@@ -20,6 +22,8 @@
 	}
 ?>
 <?php if (is_singular() and 'post' == get_post_type()): ?>
+	<iframe id="my_iframe" style="display:none;"></iframe>
+	<a download target="_blank" href="" id="vt_download_ebook" style="display:none;">Download</a>
 	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 		<div class="main_wrapper">
 			<div class="content_block">
@@ -86,28 +90,46 @@
 					<div class="button_actions" id='flipbookContainer'>
 						<?php $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
 							
-						<button class="_df_button" id="read_book_story" data-url="<?php echo get_field('_acf_pdf_file', get_the_ID()); ?>">
+						<button source="<?php echo get_field('_acf_pdf_file', get_the_ID()); ?>" class="_df_button" id="read_book_story" data-url="<?php echo get_field('_acf_pdf_file', get_the_ID()); ?>">
 							<img src="<?php echo get_template_directory_uri().'/assets/images/booking.svg'; ?>"/>អានរឿង</button>
 
 						<button id="save_off_line">រក្សាទុក</button>
-						<?php if (get_field('_acf_book_picture', get_the_ID())): ?>
-							<?php $book_source = array(); ?>
-							<div id="book_block">
-								<?php while( the_repeater_field('_acf_book_picture', get_the_ID()) ) { ?>
-									<?php array_push($book_source, get_sub_field('_acf_book_page')); ?>
-									<div class="source_url" data-url="<?php echo get_sub_field('_acf_book_page'); ?>"></div>
-								<?php } ?>
-							</div>
-						<?php endif ?>
+						
 						<script type="text/javascript">
-							var array_source = []
-							var ele = document.getElementsByClassName('source_url');
-							for (var i = 0; i < ele.length; i++) {
-								array_source.push(ele[i].getAttribute('data-url'));
-							}
 							var option_read_book_story = {
-							     source : array_source,
+								zoomRatio: 2,
+								scrollWheel: false,
+								onReady: function (flipBook) {
+									const b_zoom_out_selector = document.querySelector('.df-ui-zoomout');
+									const b_zoom_full_selector = document.querySelector('.df-ui-fullscreen');
+									b_zoom_full_selector.addEventListener('click',(evt)=>{
+										b_zoom_out_selector.click();
+									});
+								},
+								text: {
+									toggleSound: "បើក / បិទសំឡេង",
+									toggleThumbnails: "បិទបើករូបភាពតូចៗ",
+									toggleOutline: "បិទ / បើកគ្រោង / ចំណាំ",
+									previousPage: "ទំព័រ​មុន",
+									nextPage: "ទំ​ព​រ័​បន្ទាប់",
+									toggleFullscreen: "បើកអេក្រង់ពេញ",
+									zoomIn: "ពង្រីក",
+									zoomOut: "បង្រួម",
+									toggleHelp: "Toggle Help",
+
+									singlePageMode: "ទំព័រមួយ",
+									doublePageMode: "ទំព័រទ្វេ",
+									downloadPDFFile: "ទាញយក PDF File",
+									gotoFirstPage: "ទៅទំព័រដំបូង",
+									gotoLastPage: "ទៅទំព័រចុងក្រោយ",
+									play: "Start AutoPlay",
+									pause: "Pause AutoPlay",
+
+									share: "ចែករំលែក"
+								},
+
 							};
+							
 						</script>
 					</div>
 				</div>
@@ -154,18 +176,19 @@
 				the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
 				?>
 			</header><!-- .entry-header -->
-			<div class="entry-content">
+			<div class="entry-content <?php echo $short_content; ?>">
 				<?php 
 				$terms = get_the_terms( $post, 'book_author' );
 				$terms_illustrator = get_the_terms( $post, 'illustrator' ); 
 		        if ( ! empty( $terms ) ) {
 		        	?>
 		        	<div class="book_author">
-		        		<h2><?php echo $h2_title; ?>៖</h2>
+						<h2><?php echo $h2_title; ?></h2>
+						<div>៖</div>
 		        		<ul>
 		        			<?php foreach ($terms as $term) { ?>
 		        				<li>
-		        					<a href="<?php echo esc_url(get_term_link($term->slug, 'book_author')) ?>">
+		        					<a class="ellipsis" href="<?php echo esc_url(get_term_link($term->slug, 'book_author')) ?>">
 		        						<?php echo esc_html($term->name) ?>
 				        			</a>
 				        		</li>
@@ -175,11 +198,12 @@
 		        <?php } ?>
 		        <?php if (! empty($terms_illustrator)) { ?>
 		        	<div class="illustrator">
-		        		<h2>វិចិត្រករ៖</h2>
+						<h2>វិចិត្រករ</h2>
+						<div>៖</div>
 		        		<ul>
 		        			<?php foreach ($terms_illustrator as $term) { ?>
 		        				<li>
-		        					<a href="<?php echo esc_url(get_term_link($term->slug, 'illustrator')) ?>">
+		        					<a class="ellipsis" href="<?php echo esc_url(get_term_link($term->slug, 'illustrator')) ?>">
 		        						<?php echo esc_html($term->name) ?>
 				        			</a>
 				        		</li>
@@ -216,7 +240,18 @@
 			if($my_query->have_posts()){
 				echo '<div id="related_posts"><h3>អត្ថបទដែលទាក់ទង</h3><ul>';
 				while( $my_query->have_posts() ) {
-					$my_query->the_post();?>
+					$my_query->the_post();
+					$h2_title = '';
+					$acf_author= get_field('_acf_author_extract_form_edited', get_the_ID());
+					$short_content = 'long_content_vt';
+					if ($acf_author == 'author') {
+						$short_content = 'short_content_vt';
+						$h2_title = 'អ្នកនិពន្ធ';
+					}elseif ($acf_author == 'extract_from') {
+						$h2_title = 'ដកស្រង់ចេញពី';
+					}else{
+						$h2_title = 'រៀបរៀងដោយ';
+					}?>
 
 					<li>
 						<div class="relatedthumb">
@@ -224,62 +259,92 @@
 								<?php the_post_thumbnail(); ?>
 							</a>
 						</div>
-						<div class="relatedcontent">
+						<div class="relatedcontent <?php echo $short_content; ?>">
 							<header class="entry-header">
 								<h2 class="entry-title">
 									<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title(); ?>">
 										<?php the_title(); ?>										
 									</a>
 								</h2>
-							</header>
-							<?php 
-								if(is_single() && 'post' == get_post_type()){ ?>
+							</header> 
 
-									<?php 
-									$terms = get_the_terms( $post, 'book_author' );
-									$terms_illustrator = get_the_terms( $post, 'illustrator' );
+							<?php 						
+							$terms = get_the_terms( $post, 'book_author' );
+							$terms_illustrator = get_the_terms( $post, 'illustrator' );						
+				
+							if ( ! empty( $terms ) ) {
+								?>
+								<div class="book_author">
+									<h2><?php echo $h2_title; ?></h2>
+									<div>៖</div>
+									<ul>
+										<?php foreach ($terms as $term) { ?>
+											<li>
+												<a href="<?php echo esc_url(get_term_link($term->slug, 'book_author')) ?>">
+													<?php echo esc_html($term->name) ?>
+												</a>
+											</li>
+										<?php } ?>
+									</ul>
+								</div>		        	
+							<?php } ?>
+							<?php if (! empty($terms_illustrator)) { ?>
+								<div class="illustrator">
+									<h2>វិចិត្រករ</h2>
+									<div>៖</div>
+									<ul>
+										<?php foreach ($terms_illustrator as $term) { ?>
+											<li>
+												<a href="<?php echo esc_url(get_term_link($term->slug, 'illustrator')) ?>">
+													<?php echo esc_html($term->name) ?>
+												</a>
+											</li>
+										<?php } ?>
+									</ul>
+								</div>
+							<?php } ?>
 
-									$h2_title = '';
-									$acf_author= get_field('_acf_author_extract_form_edited', get_the_ID());
-									if ($acf_author == 'author') {
-										$h2_title = 'អ្នកនិពន្ធ';
-									}elseif ($acf_author == 'extract_from') {
-										$h2_title = 'ដកស្រង់ចេញពី';
-									}else{
-										$h2_title = 'រៀបរៀងដោយ';
-									}
-					 
-							        if ( ! empty( $terms ) ) {
-							        	?>
-							        	<div class="book_author">
-							        		<h2><?php echo $h2_title; ?>៖</h2>
-							        		<ul>
-							        			<?php foreach ($terms as $term) { ?>
-							        				<li>
-							        					<a href="<?php echo esc_url(get_term_link($term->slug, 'book_author')) ?>">
-							        						<?php echo esc_html($term->name) ?>
-									        			</a>
-									        		</li>
-							        			<?php } ?>
-							        		</ul>
-							        	</div>		        	
-							        <?php } ?>
-							        <?php if (! empty($terms_illustrator)) { ?>
-							        	<div class="illustrator">
-							        		<h2>វិចិត្រករ៖</h2>
-							        		<ul>
-							        			<?php foreach ($terms_illustrator as $term) { ?>
-							        				<li>
-							        					<a href="<?php echo esc_url(get_term_link($term->slug, 'illustrator')) ?>">
-							        						<?php echo esc_html($term->name) ?>
-									        			</a>
-									        		</li>
-							        			<?php } ?>
-							        		</ul>
-							        	</div>
-							        <?php } ?>
+						</div>
+						<div class="related_action_button">
+							<button source="<?php echo get_field('_acf_pdf_file', get_the_ID()); ?>" class="_df_button" id="related_read_book_story" data-url="<?php echo get_field('_acf_pdf_file', get_the_ID()); ?>">
+								<img src="<?php echo get_template_directory_uri().'/assets/images/booking.svg'; ?>"/>អានរឿង</button>
 
-								<?php }?>
+							<button id="related_save_off_line">រក្សាទុក</button>
+							<script type="text/javascript">
+								var option_related_read_book_story = {
+									zoomRatio: 2,
+									scrollWheel: false,
+									onReady: function (flipBook) {
+										const b_zoom_out_selector = document.querySelector('.df-ui-zoomout');
+										const b_zoom_full_selector = document.querySelector('.df-ui-fullscreen');
+										b_zoom_full_selector.addEventListener('click',(evt)=>{
+											b_zoom_out_selector.click();
+										});
+									},
+									text: {
+										toggleSound: "បើក / បិទសំឡេង",
+										toggleThumbnails: "បិទបើករូបភាពតូចៗ",
+										toggleOutline: "បិទ / បើកគ្រោង / ចំណាំ",
+										previousPage: "ទំព័រ​មុន",
+										nextPage: "ទំ​ព​រ័​បន្ទាប់",
+										toggleFullscreen: "បើកអេក្រង់ពេញ",
+										zoomIn: "ពង្រីក",
+										zoomOut: "បង្រួម",
+										toggleHelp: "Toggle Help",
+
+										singlePageMode: "ទំព័រមួយ",
+										doublePageMode: "ទំព័រទ្វេ",
+										downloadPDFFile: "ទាញយក PDF File",
+										gotoFirstPage: "ទៅទំព័រដំបូង",
+										gotoLastPage: "ទៅទំព័រចុងក្រោយ",
+										play: "Start AutoPlay",
+										pause: "Pause AutoPlay",
+										share: "ចែករំលែក"
+									},
+
+								};
+								
+							</script>
 						</div>
 					</li>
 				<?php  }

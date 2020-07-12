@@ -36,3 +36,32 @@ const setWindowHeight = ()=>{
 	}
 }
 setWindowHeight();
+
+const BookZoomIn = ()=>{
+	const b_selector = document.querySelector('.df-ui-zoomin');
+	if(b_selector){
+		b_selector.addEventListener('click', (evt)=>{
+			console.log(evt);
+		});
+	}	
+}
+BookZoomIn();
+
+const DownloadFileLocal = ()=>{
+	const d_selector = document.getElementById('save_off_line');	
+	const d_url = document.getElementById('read_book_story').getAttribute('data-url');
+	d_selector.addEventListener('click', (evt)=>{
+		const d_target = document.getElementById('vt_download_ebook');
+		d_target.href=d_url;
+		d_target.click();
+	});
+	
+	const d_related_selector = document.getElementById('related_save_off_line');
+	const d_related_url = document.getElementById('related_read_book_story').getAttribute('data-url');
+	d_related_selector.addEventListener('click', (evt)=>{
+		const d_target = document.getElementById('vt_download_ebook');
+		d_target.href=d_related_url;
+		d_target.click();
+	});
+}
+DownloadFileLocal();
