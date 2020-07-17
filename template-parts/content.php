@@ -72,7 +72,7 @@
 
 					<?php if ($terms_publisher): ?>
 						<div class="book_publisher">						
-							<h2>បោះពុម្ភឆ្នាំ</h2>
+							<h2>បោះពុម្ពឆ្នំា</h2>
 							<div>៖</div>
 							<ul>
 								<?php foreach ($terms_publisher as $term) { ?>
@@ -238,7 +238,7 @@
 
 			$my_query = new wp_query( $args );
 			if($my_query->have_posts()){
-				echo '<div id="related_posts"><h3>អត្ថបទដែលទាក់ទង</h3><ul>';
+				echo '<div id="related_posts"><h3>អានរឿងផ្សេងទៀត</h3><ul>';
 				while( $my_query->have_posts() ) {
 					$my_query->the_post();
 					$h2_title = '';

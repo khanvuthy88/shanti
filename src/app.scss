@@ -397,6 +397,10 @@ header{
 				.entry-title{
 					font-size: 1rem;
 					padding: 5px 0;
+					overflow: hidden;
+					width: 100%;
+					white-space: nowrap;
+					text-overflow: ellipsis;
 				}
 				.book_author,
 				.illustrator{
@@ -614,6 +618,7 @@ footer{
 			box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 			display: flex;
 			flex-direction: column;
+			overflow: hidden;
 			@include media-breakpoint-up(sm){
 				margin-bottom: 0px;
 			}
@@ -650,6 +655,9 @@ footer{
 				h2{
 					&.entry-title{
 						padding: 0px;
+						white-space: nowrap;
+						overflow: hidden;
+						text-overflow: ellipsis;
 					}
 				}
 				ul{
@@ -711,4 +719,7 @@ footer{
 	button{
 		width: 50%;
 	}
+}
+iframe{
+	width: 100%;
 }

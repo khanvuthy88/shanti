@@ -83,7 +83,7 @@
 
 			$my_query = new wp_query( $args );
 			if($my_query->have_posts()){
-				echo '<div id="related_posts"><h3>អត្ថបទទាក់ទង</h3><ul>';
+				echo '<div id="related_posts"><h3>មើលវីដេអូផ្សេងទៀត</h3><ul>';
 				while( $my_query->have_posts() ) {
 					$my_query->the_post();?>
 
