@@ -90,47 +90,9 @@
 					<div class="button_actions" id='flipbookContainer'>
 						<?php $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
 							
-						<button source="<?php echo get_field('_acf_pdf_file', get_the_ID()); ?>" class="_df_button" id="read_book_story" data-url="<?php echo get_field('_acf_pdf_file', get_the_ID()); ?>">
+						<button source="<?php echo get_field('_acf_pdf_file', get_the_ID()); ?>" id="read_book_story" data-url="<?php echo get_field('_acf_pdf_file', get_the_ID()); ?>">
 							<img src="<?php echo get_template_directory_uri().'/assets/images/booking.svg'; ?>"/>អានរឿង</button>
 
-						<button id="save_off_line">រក្សាទុក</button>
-						
-						<script type="text/javascript">
-							var option_read_book_story = {
-								zoomRatio: 2,
-								scrollWheel: false,
-								onReady: function (flipBook) {
-									const b_zoom_out_selector = document.querySelector('.df-ui-zoomout');
-									const b_zoom_full_selector = document.querySelector('.df-ui-fullscreen');
-									b_zoom_full_selector.addEventListener('click',(evt)=>{
-										b_zoom_out_selector.click();
-									});
-								},
-								text: {
-									toggleSound: "បើក / បិទសំឡេង",
-									toggleThumbnails: "បិទបើករូបភាពតូចៗ",
-									toggleOutline: "បិទ / បើកគ្រោង / ចំណាំ",
-									previousPage: "ទំព័រ​មុន",
-									nextPage: "ទំ​ព​រ័​បន្ទាប់",
-									toggleFullscreen: "បើកអេក្រង់ពេញ",
-									zoomIn: "ពង្រីក",
-									zoomOut: "បង្រួម",
-									toggleHelp: "Toggle Help",
-
-									singlePageMode: "ទំព័រមួយ",
-									doublePageMode: "ទំព័រទ្វេ",
-									downloadPDFFile: "ទាញយក PDF File",
-									gotoFirstPage: "ទៅទំព័រដំបូង",
-									gotoLastPage: "ទៅទំព័រចុងក្រោយ",
-									play: "Start AutoPlay",
-									pause: "Pause AutoPlay",
-
-									share: "ចែករំលែក"
-								},
-
-							};
-							
-						</script>
 					</div>
 				</div>
 			</div>
@@ -306,44 +268,15 @@
 
 						</div>
 						<div class="related_action_button">
-							<button source="<?php echo get_field('_acf_pdf_file', get_the_ID()); ?>" class="_df_button" id="related_read_book_story" data-url="<?php echo get_field('_acf_pdf_file', get_the_ID()); ?>">
+							<button class="<?php the_ID(); ?>" source="<?php echo get_field('_acf_pdf_file', get_the_ID()); ?>" id="related_read_book_story_<?php the_ID(); ?>" data-url="<?php echo get_field('_acf_pdf_file', get_the_ID()); ?>">
 								<img src="<?php echo get_template_directory_uri().'/assets/images/booking.svg'; ?>"/>អានរឿង</button>
-
-							<button id="related_save_off_line">រក្សាទុក</button>
 							<script type="text/javascript">
-								var option_related_read_book_story = {
-									zoomRatio: 2,
-									scrollWheel: false,
-									onReady: function (flipBook) {
-										const b_zoom_out_selector = document.querySelector('.df-ui-zoomout');
-										const b_zoom_full_selector = document.querySelector('.df-ui-fullscreen');
-										b_zoom_full_selector.addEventListener('click',(evt)=>{
-											b_zoom_out_selector.click();
-										});
-									},
-									text: {
-										toggleSound: "បើក / បិទសំឡេង",
-										toggleThumbnails: "បិទបើករូបភាពតូចៗ",
-										toggleOutline: "បិទ / បើកគ្រោង / ចំណាំ",
-										previousPage: "ទំព័រ​មុន",
-										nextPage: "ទំ​ព​រ័​បន្ទាប់",
-										toggleFullscreen: "បើកអេក្រង់ពេញ",
-										zoomIn: "ពង្រីក",
-										zoomOut: "បង្រួម",
-										toggleHelp: "Toggle Help",
-
-										singlePageMode: "ទំព័រមួយ",
-										doublePageMode: "ទំព័រទ្វេ",
-										downloadPDFFile: "ទាញយក PDF File",
-										gotoFirstPage: "ទៅទំព័រដំបូង",
-										gotoLastPage: "ទៅទំព័រចុងក្រោយ",
-										play: "Start AutoPlay",
-										pause: "Pause AutoPlay",
-										share: "ចែករំលែក"
-									},
-
-								};
-								
+								let relatedActionButton_<?php the_ID(); ?> = document.querySelector('#related_read_book_story_<?php the_ID(); ?>');
+								if(relatedActionButton_<?php the_ID(); ?>){
+									relatedActionButton_<?php the_ID(); ?>.addEventListener('click', (evt)=>{
+										window.open(evt.target.dataset['url']);
+									});
+								}
 							</script>
 						</div>
 					</li>

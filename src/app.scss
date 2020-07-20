@@ -723,3 +723,51 @@ footer{
 iframe{
 	width: 100%;
 }
+
+#ie_non_support{
+	display: none;
+	width: 100%;
+	position: relative;
+	.message_non_support_box{
+		width: 100%;
+		padding: 15px;
+		background-color: rgb(255 255 255);
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		margin: 0px auto;
+		@include media-breakpoint-up(sm){
+			width: 500px;
+    		border-radius: 1rem;
+		}
+		@include media-breakpoint-up(md){
+			width: 500px;
+    		border-radius: 1rem;
+		}
+		@include media-breakpoint-up(lg){
+			width: 500px;
+    		border-radius: 1rem;
+		}
+		@include media-breakpoint-up(xl){
+			width: 500px;
+    		border-radius: 1rem;
+		}
+		h1{
+			margin-bottom: 1rem;
+			text-transform: uppercase;
+			color: $primary;
+		}
+	}
+}
+.noSupport{
+	#ie_non_support{
+		display: block;
+	}
+	#page{
+		display: none;
+	}
+}
+button{
+	border-radius: 3px;
+}

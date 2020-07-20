@@ -16,12 +16,24 @@
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="https://gmpg.org/xfn/11">
-
+	<script>
+		window.addEventListener("DOMContentLoaded", function(){
+			if (window.navigator.userAgent.indexOf("Trident/") > 0){
+				document.body.classList.add("noSupport");
+			}
+		});
+	</script>
 	<?php wp_head(); ?>
 	<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri().'/assets/vendors/font-awesome/css/font-awesome.min.css'; ?>">
 </head>
 
 <body <?php body_class(); ?>>
+<div id="ie_non_support">
+	<div class="message_non_support_box">
+		<h1>Warning</h1>
+		<p>Internet Explorer is not supported and some platform functionality may not be stable , Please switch to other browsers like Chrome, FireFox or Safari.</p>
+	</div>
+</div>
 <?php wp_body_open(); ?>
 
 <div id="fb-root"></div>
