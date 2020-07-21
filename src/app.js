@@ -17,7 +17,7 @@ const openPDF = ()=>{
 	if(buttonAction){
 		buttonAction.addEventListener('click', (evt)=>{
 			const actionUrl = evt.target.dataset['url'];
-			window.open(actionUrl);
+			window.open(actionUrl, '_self');
 		});
 	}
 	

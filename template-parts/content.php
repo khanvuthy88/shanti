@@ -274,7 +274,7 @@
 								let relatedActionButton_<?php the_ID(); ?> = document.querySelector('#related_read_book_story_<?php the_ID(); ?>');
 								if(relatedActionButton_<?php the_ID(); ?>){
 									relatedActionButton_<?php the_ID(); ?>.addEventListener('click', (evt)=>{
-										window.open(evt.target.dataset['url']);
+										window.open(evt.target.dataset['url'], '_self');
 									});
 								}
 							</script>
