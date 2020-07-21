@@ -156,12 +156,6 @@ function shanti_volunteer_association_cambodia_scripts() {
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
-	if ( is_single() && 'post' == get_post_type() ) {
-		wp_enqueue_style('dflip-css', get_template_directory_uri(). '/assets/vendors/dflip/css/dflip.min.css', array(), _S_VERSION, false);
-		wp_enqueue_style('themify-icons', get_template_directory_uri(). '/assets/vendors/dflip/css/themify-icons.min.css', array(), _S_VERSION, false);
-		wp_enqueue_script('jquery-01', get_template_directory_uri(). '/assets/vendors/dflip/js/libs/jquery.min.js', array(), _S_VERSION, true);
-		wp_enqueue_script('dflip-js', get_template_directory_uri(). '/assets/vendors/dflip/js/dflip.min.js', array(), _S_VERSION, true);
-	}
 }
 add_action( 'wp_enqueue_scripts', 'shanti_volunteer_association_cambodia_scripts' );
 
