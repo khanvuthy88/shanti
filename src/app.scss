@@ -276,20 +276,30 @@ header{
 }
 #primary{
 	margin-bottom: 30px;
-    display: grid;
-    grid-gap: 2%;
+    display: block;
 	padding: 15px;
-	grid-template-columns: 100%;
 	@include media-breakpoint-up(sm){
-		grid-template-columns: 100%;
+		display: block;
 	}
 	@include media-breakpoint-up(md){
+		margin-bottom: 30px;
+    	display: grid;
+		grid-gap: 2%;
+		padding: 15px;
 		grid-template-columns: 25% 73%;
 	}
 	@include media-breakpoint-up(lg){
+		margin-bottom: 30px;
+    	display: grid;
+		grid-gap: 2%;
+		padding: 15px;
 		grid-template-columns: 25% 73%;
 	}
 	@include media-breakpoint-up(xl){
+		margin-bottom: 30px;
+    	display: grid;
+		grid-gap: 2%;
+		padding: 15px;
 		grid-template-columns: 25% 73%;
 	}
 }
@@ -297,6 +307,7 @@ header{
 	width: 100%;
 	display: block;
 	overflow: hidden;
+	margin-bottom: 15px;
 	.widget{
 		display: block;
 		width: 100%;
