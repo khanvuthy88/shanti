@@ -788,44 +788,50 @@ button{
 	}
 	.error-404{
 		text-align: center;
-		.page-content{
-			.searach_box{
-				margin-top: 15px;	
-				@include media-breakpoint-up(md){
-					max-width: 500px;
-    				margin: auto;
-				}	
-				@include media-breakpoint-up(xl){
-					max-width: 500px;
-    				margin: auto;
-				}		
-				@include media-breakpoint-up(lg){
-					max-width: 500px;
-    				margin: auto;
+	}
+}
+.search-no-results{
+	.no-results{
+		text-align: center;
+	}
+}
+.searach_box{
+	margin-top: 15px;	
+	@include media-breakpoint-up(md){
+		max-width: 500px;
+		margin: auto;
+		margin-top: 15px;
+	}	
+	@include media-breakpoint-up(xl){
+		max-width: 500px;
+		margin: auto;
+		margin-top: 15px;
+	}		
+	@include media-breakpoint-up(lg){
+		max-width: 500px;
+		margin: auto;
+		margin-top: 15px;
+	}
+	form{
+		font-family: "KhmerOScontent";
+		&.search-form{
+			margin-top: 15px;
+			width: 100%;
+			display: grid;
+			grid-template-columns: 80% 20%;
+			input{
+				font-family: 'KhmerOScontent';
+				&.search-field{
+					width: 100%;
+					padding: 0.8rem;
+					border-radius: 0;
+					border: 1px solid #eee;
 				}
-				form{
-					font-family: "KhmerOScontent";
-					&.search-form{
-						margin-top: 15px;
-						width: 100%;
-						display: grid;
-						grid-template-columns: 80% 20%;
-						input{
-							font-family: 'KhmerOScontent';
-							&.search-field{
-								width: 100%;
-								padding: 0.8rem;
-								border-radius: 0;
-								border: 1px solid #eee;
-							}
-							&.search-submit{
-								border-radius: 0;
-								border: 1px solid #eee;
-								background-color: $primary;
-								color: #ffffff;
-							}
-						}
-					}
+				&.search-submit{
+					border-radius: 0;
+					border: 1px solid #eee;
+					background-color: $primary;
+					color: #ffffff;
 				}
 			}
 		}
